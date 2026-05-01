@@ -36,10 +36,14 @@ const STYLES = `
   }
   .pill-human { color: #065f46; font-weight: 600; }
   .pill-ai    { color: #5b21b6; font-weight: 600; }
+  .pill-multi { color: #075985; font-weight: 600; }
+  .pill-pop   { color: #92400e; font-weight: 600; }
   .pill-revoked { color: #991b1b; font-weight: 600; }
   .pill-error   { color: #7f1d1d; }
   :host([theme="dark"]) .pill-human   { color: #a7f3d0; }
   :host([theme="dark"]) .pill-ai      { color: #ddd6fe; }
+  :host([theme="dark"]) .pill-multi   { color: #bae6fd; }
+  :host([theme="dark"]) .pill-pop     { color: #fde68a; }
   :host([theme="dark"]) .pill-revoked { color: #fca5a5; }
   :host([theme="dark"]) .pill-error   { color: #fca5a5; }
 `;
@@ -129,17 +133,31 @@ class FidemarkBadgeElement extends HTMLElement {
   }
 
   private renderAttestation(att: BadgeAttestation, apiBase: string, uid: string) {
-    const isHuman = att.type === "human";
     const isRevoked = att.revoked;
     this.icon.textContent = isRevoked ? "✗" : "✓";
-    this.label.textContent = isRevoked
-      ? "Revoked"
-      : isHuman
-        ? `Human Proof${att.human?.proofMethod === "ens-verified" ? " (ENS)" : ""}`
-        : `AI Proof${att.ai ? ` · ${att.ai.modelId}` : ""}`;
-    this.label.className = `label ${
-      isRevoked ? "pill-revoked" : isHuman ? "pill-human" : "pill-ai"
-    }`;
+
+    let text: string;
+    let cls: string;
+    if (isRevoked) {
+      text = "Revoked";
+      cls = "pill-revoked";
+    } else if (att.type === "human") {
+      text = `Human Proof${att.human?.proofMethod === "ens-verified" ? " (ENS)" : ""}`;
+      cls = "pill-human";
+    } else if (att.type === "ai") {
+      text = `AI Proof${att.ai ? ` · ${att.ai.modelId}` : ""}`;
+      cls = "pill-ai";
+    } else if (att.type === "multi") {
+      const n = att.multi?.attesters.length;
+      text = `Multi-party Proof${n ? ` · ${n} signers` : ""}`;
+      cls = "pill-multi";
+    } else {
+      text = "Verified-human Proof";
+      cls = "pill-pop";
+    }
+
+    this.label.textContent = text;
+    this.label.className = `label ${cls}`;
     this.link.href = att.verifyUrl || `${apiBase}/${uid}`;
   }
 }

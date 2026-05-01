@@ -36,13 +36,30 @@ export function FidemarkBadge({ uid, apiBase = DEFAULT_API_BASE, theme = "light"
 
   const att = status.attestation;
   const verifyUrl = att.verifyUrl || `${apiBase}/${uid}`;
-  const isHuman = att.type === "human";
-  const labelStyle = att.revoked ? style.pillRevoked : isHuman ? style.pillHuman : style.pillAI;
-  const label = att.revoked
-    ? "Revoked"
-    : isHuman
-      ? `Human Proof${att.human?.proofMethod === "ens-verified" ? " (ENS)" : ""}`
-      : `AI Proof${att.ai ? ` · ${att.ai.modelId}` : ""}`;
+
+  const labelStyle = att.revoked
+    ? style.pillRevoked
+    : att.type === "human"
+      ? style.pillHuman
+      : att.type === "ai"
+        ? style.pillAI
+        : att.type === "multi"
+          ? style.pillMulti
+          : style.pillPoP;
+
+  let label: string;
+  if (att.revoked) {
+    label = "Revoked";
+  } else if (att.type === "human") {
+    label = `Human Proof${att.human?.proofMethod === "ens-verified" ? " (ENS)" : ""}`;
+  } else if (att.type === "ai") {
+    label = `AI Proof${att.ai ? ` · ${att.ai.modelId}` : ""}`;
+  } else if (att.type === "multi") {
+    const n = att.multi?.attesters.length;
+    label = `Multi-party Proof${n ? ` · ${n} signers` : ""}`;
+  } else {
+    label = "Verified-human Proof";
+  }
 
   return (
     <a

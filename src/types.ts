@@ -5,7 +5,7 @@
  */
 export interface BadgeAttestation {
   uid: string;
-  type: "human" | "ai";
+  type: "human" | "ai" | "multi" | "pop";
   attester: string;
   contentHash: string;
   createdAt: number;
@@ -13,6 +13,8 @@ export interface BadgeAttestation {
   verifyUrl: string;
   human?: { proofMethod: string };
   ai?: { modelId: string; provider: string };
+  multi?: { attesters: string[]; proofMethod: string };
+  pop?: { proofMethod: string };
 }
 
 export type BadgeStatus =

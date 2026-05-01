@@ -4,6 +4,8 @@ export interface ThemeStyles {
   container: CSSProperties;
   pillHuman: CSSProperties;
   pillAI: CSSProperties;
+  pillMulti: CSSProperties;
+  pillPoP: CSSProperties;
   pillRevoked: CSSProperties;
   pillError: CSSProperties;
   text: CSSProperties;
@@ -38,6 +40,8 @@ export function styleFor(theme: "light" | "dark"): ThemeStyles {
     },
     pillHuman: { color: dark ? "#a7f3d0" : "#065f46", fontWeight: 600 },
     pillAI: { color: dark ? "#ddd6fe" : "#5b21b6", fontWeight: 600 },
+    pillMulti: { color: dark ? "#bae6fd" : "#075985", fontWeight: 600 },
+    pillPoP: { color: dark ? "#fde68a" : "#92400e", fontWeight: 600 },
     pillRevoked: { color: dark ? "#fca5a5" : "#991b1b", fontWeight: 600 },
     pillError: { color: dark ? "#fca5a5" : "#7f1d1d", fontWeight: 500 },
     text: {},
