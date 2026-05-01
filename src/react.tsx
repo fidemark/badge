@@ -23,12 +23,24 @@ export function FidemarkBadge({ uid, apiBase = DEFAULT_API_BASE, theme = "light"
 
   const style = styleFor(theme);
 
+  // `data-fidemark-uid` is read by the Fidemark browser extension's content
+  // script to detect attestations on the current page. We tag it on every
+  // render branch (loading / error / final pill) so the UID is discoverable
+  // immediately, before the API call to /api/attestation/<uid> resolves.
   if (status.kind === "loading") {
-    return <span style={style.container}>verifying…</span>;
+    return (
+      <span data-fidemark-uid={uid} style={style.container}>
+        verifying…
+      </span>
+    );
   }
   if (status.kind === "error") {
     return (
-      <span style={{ ...style.container, ...style.pillError }} role="alert">
+      <span
+        data-fidemark-uid={uid}
+        style={{ ...style.container, ...style.pillError }}
+        role="alert"
+      >
         ⚠ {status.message}
       </span>
     );
@@ -63,6 +75,7 @@ export function FidemarkBadge({ uid, apiBase = DEFAULT_API_BASE, theme = "light"
 
   return (
     <a
+      data-fidemark-uid={uid}
       href={verifyUrl}
       target="_blank"
       rel="noopener noreferrer"
