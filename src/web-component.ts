@@ -4,7 +4,7 @@
  * Drop-in for any HTML page. No React required at runtime, this file ships
  * as a small standalone bundle (ESM + IIFE).
  *
- * <script type="module" src="https://verify.fidemark.dev/badge.js"></script>
+ * <script type="module" src="https://cdn.jsdelivr.net/npm/@fidemark/badge@^0.1/dist/web-component.js"></script>
  * <fidemark-badge uid="0xabc…"></fidemark-badge>
  */
 import { fetchAttestation, DEFAULT_API_BASE, type BadgeAttestation } from "./types.js";

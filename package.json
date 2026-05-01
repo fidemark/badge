@@ -3,7 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "description": "Fidemark verification badge, React component + Web Component embed",
-  "license": "UNLICENSED",
+  "license": "Apache-2.0",
+  "author": "Vincent Cibelli (VinciDev) <vincent@cibelli.fr>",
+  "homepage": "https://fidemark.dev",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fidemark/badge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/fidemark/badge/issues"
+  },
+  "keywords": [
+    "fidemark",
+    "attestation",
+    "provenance",
+    "eas",
+    "badge",
+    "web-component",
+    "react"
+  ],
   "type": "module",
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -21,7 +39,10 @@
     }
   },
   "files": [
-    "dist"
+    "dist",
+    "README.md",
+    "LICENSE",
+    "NOTICE"
   ],
   "scripts": {
     "build": "tsup",
