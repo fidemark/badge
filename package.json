@@ -4,7 +4,7 @@
   "private": true,
   "description": "Fidemark verification badge, React component + Web Component embed",
   "license": "Apache-2.0",
-  "author": "Vincent Cibelli (VinciDev) <vincent@cibelli.fr>",
+  "author": "Vincent Cibelli (VinciDev) <contact@vincidev.com>",
   "homepage": "https://fidemark.dev",
   "repository": {
     "type": "git",
@@ -56,8 +56,12 @@
     "react-dom": ">=18"
   },
   "peerDependenciesMeta": {
-    "react": { "optional": true },
-    "react-dom": { "optional": true }
+    "react": {
+      "optional": true
+    },
+    "react-dom": {
+      "optional": true
+    }
   },
   "devDependencies": {
     "@types/react": "^19.2.14",
