@@ -1,6 +1,6 @@
 {
   "name": "@fidemark/badge",
-  "version": "0.0.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Fidemark verification badge, React component + Web Component embed",
   "license": "Apache-2.0",
@@ -36,6 +36,11 @@
       "types": "./dist/web-component.d.ts",
       "import": "./dist/web-component.js",
       "require": "./dist/web-component.cjs"
+    },
+    "./region": {
+      "types": "./dist/region.d.ts",
+      "import": "./dist/region.js",
+      "require": "./dist/region.cjs"
     }
   },
   "files": [
@@ -47,7 +52,7 @@
   "scripts": {
     "build": "tsup",
     "dev": "tsup --watch",
-    "test": "echo 'no tests in @fidemark/badge yet'",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit",
     "clean": "rm -rf dist"
   },
@@ -68,6 +73,9 @@
     "@types/react-dom": "^19.2.3",
     "react": "^19.2.5",
     "react-dom": "^19.2.5",
+    "jsdom": "^25.0.1",
+    "@types/jsdom": "^21.1.7",
+    "vitest": "^2.1.5",
     "tsup": "^8.3.5",
     "typescript": "^5.6.3"
   }

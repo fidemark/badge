@@ -5,4 +5,6 @@
  * subpath which registers <fidemark-badge> globally.
  */
 export { FidemarkBadge } from "./react.js";
+export { FidemarkRegion } from "./region-react.js";
+export type { FidemarkRegionProps } from "./region-react.js";
 export type { BadgeProps, BadgeAttestation, BadgeStatus } from "./types.js";

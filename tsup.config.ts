@@ -19,4 +19,14 @@ export default defineConfig([
     sourcemap: true,
     target: "es2022",
   },
+  {
+    // <fidemark-region> bundle, standalone web component for region-level
+    // verification. Includes its own canonicalization helpers.
+    entry: { region: "src/region.ts" },
+    format: ["esm", "cjs", "iife"],
+    globalName: "FidemarkRegion",
+    dts: true,
+    sourcemap: true,
+    target: "es2022",
+  },
 ]);
